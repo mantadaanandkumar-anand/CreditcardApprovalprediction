@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ApexTrust | Credit Evaluation Result</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts (Outfit & Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: rgba(20, 27, 45, 0.7);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --accent-primary: #00f0ff;
+            --accent-secondary: #7000ff;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --gradient-accent: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            
+            --success-glow: rgba(25, 135, 84, 0.2);
+            --danger-glow: rgba(220, 53, 69, 0.2);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            background-image: radial-gradient(circle at top right, rgba(112, 0, 255, 0.12) 0%, transparent 40%),
+                              radial-gradient(circle at bottom left, rgba(0, 240, 255, 0.08) 0%, transparent 35%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4, h5, .brand-font {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Navigation Bar Styling */
+        .navbar-custom {
+            background-color: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+        }
+
+        .navbar-brand span {
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Result Panel Card */
+        .result-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            margin-top: 50px;
+            margin-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Glow effects behind result card based on decision */
+        .glow-success {
+            box-shadow: 0 0 50px rgba(25, 135, 84, 0.15);
+            border-color: rgba(25, 135, 84, 0.3);
+        }
+        
+        .glow-danger {
+            box-shadow: 0 0 50px rgba(220, 53, 69, 0.15);
+            border-color: rgba(220, 53, 69, 0.3);
+        }
+
+        /* Large circular or badge indicator */
+        .result-header-badge {
+            font-size: 2.25rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 12px 35px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Probability meter bar */
+        .prob-progress {
+            height: 18px;
+            background-color: rgba(11, 15, 25, 0.6);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .prob-progress-bar {
+            border-radius: 10px;
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Audit values table styling */
+        .audit-table {
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            border-color: rgba(255, 255, 255, 0.05);
+            margin-top: 30px;
+        }
+
+        .audit-table th {
+            color: var(--text-secondary);
+            font-weight: 500;
+            background-color: rgba(0, 0, 0, 0.15);
+            padding: 12px;
+        }
+
+        .audit-table td {
+            background-color: rgba(0, 0, 0, 0.08);
+            padding: 12px;
+        }
+
+        /* Risk categories styling */
+        .risk-badge {
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 6px 16px;
+            border-radius: 6px;
+            text-transform: uppercase;
+        }
+
+        /* Buttons */
+        .btn-again {
+            background: var(--gradient-accent);
+            border: none;
+            color: #ffffff;
+            font-weight: 600;
+            padding: 14px 35px;
+            border-radius: 12px;
+            font-family: 'Outfit', sans-serif;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 240, 255, 0.2);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-again:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 240, 255, 0.4);
+            opacity: 0.95;
+            color: #ffffff;
+        }
+
+        /* Footer styling */
+        footer {
+            background-color: #05070c;
+            border-top: 1px solid var(--border-color);
+            padding: 30px 0;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        
+        .footer-logo {
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--text-primary);
+        }
+        .footer-logo span {
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Navigation Bar -->
+    <nav class="navbar navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fa-solid fa-shield-halved me-2"></i><span>Apex</span>Trust
+            </a>
+            <div class="d-flex align-items-center">
+                <span class="badge bg-dark border border-secondary text-secondary py-2 px-3">
+                    <i class="fa-solid fa-lock me-2 text-info"></i>Audit Complete
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 2. Main Results Dashboard -->
+    <main class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+                
+                <!-- Main Result Card (Dynamic Glow borders based on outcome) -->
+                <div class="result-card text-center {% if prediction == 'Approved' %}glow-success{% else %}glow-danger{% endif %}">
+                    
+                    <h2 class="mb-4 text-secondary text-uppercase tracking-wider font-monospace" style="font-size: 0.85rem; letter-spacing: 2px;">Evaluation Outcome</h2>
+                    
+                    <!-- Prediction Label -->
+                    <div>
+                        <span class="result-header-badge bg-{{ badge_class }} text-white">
+                            {% if prediction == "Approved" %}
+                                <i class="fa-solid fa-circle-check me-2"></i>Approved
+                            {% else %}
+                                <i class="fa-solid fa-circle-xmark me-2"></i>Rejected
+                            {% endif %}
+                        </span>
+                    </div>
+
+                    <!-- Risk Category and Recommendation Block -->
+                    <div class="row my-4 justify-content-center">
+                        <div class="col-md-10">
+                            <div class="p-4 rounded-4" style="background-color: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.03);">
+                                
+                                <!-- Risk Level calculation -->
+                                <p class="mb-3">
+                                    <strong>Risk Profile:</strong>
+                                    {% if probability_raw >= 0.75 %}
+                                        <span class="risk-badge bg-success text-white">Low Risk</span>
+                                    {% elif probability_raw >= 0.50 %}
+                                        <span class="risk-badge bg-warning text-dark">Medium Risk</span>
+                                    {% else %}
+                                        <span class="risk-badge bg-danger text-white">High Risk</span>
+                                    {% endif %}
+                                </p>
+
+                                <!-- Recommendation Text -->
+                                <p class="mb-0 text-secondary" style="font-size: 0.95rem; line-height: 1.6;">
+                                    <strong>Decision Recommendation:</strong><br>
+                                    {% if prediction == "Approved" %}
+                                        Applicant meets all key creditworthiness parameters. Recommend approval for the requested credit facility. Set standard credit limit constraints.
+                                    {% else %}
+                                        Applicant does not satisfy baseline approval constraints due to elevated risk projections (low credit score, high DTI ratio, or insufficient employment history). Recommend application rejection.
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Probability Level Progress Indicator -->
+                    <div class="row justify-content-center mt-5 mb-5">
+                        <div class="col-md-8">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-secondary" style="font-size: 0.85rem;">Approval Probability Score</span>
+                                <strong class="text-{{ badge_class }}">{{ probability }}</strong>
+                            </div>
+                            <div class="progress prob-progress">
+                                <div class="progress-bar prob-progress-bar bg-{{ badge_class }}" 
+                                     role="progressbar" 
+                                     {{ 'style="width: ' ~ probability ~ ';"' | safe }} 
+                                     aria-valuenow="{{ probability_raw * 100 }}" 
+                                     aria-valuemin="0" 
+                                     aria-valuemax="100">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Predict Again Navigation Button -->
+                    <div class="mt-4">
+                        <a href="/" class="btn-again"><i class="fa-solid fa-angle-left me-2"></i>Evaluate New Applicant</a>
+                    </div>
+                </div>
+
+                <!-- Section: Applicant Audit Summary Log -->
+                <div class="form-card mb-5">
+                    <h3 class="form-section-title text-start"><i class="fa-solid fa-database me-2"></i>Profile Audit Log</h3>
+                    <div class="table-responsive">
+                        <table class="table audit-table table-bordered align-middle">
+                            <tbody>
+                                <tr>
+                                    <th>Biological Gender</th>
+                                    <td>{{ applicant.gender }}</td>
+                                    <th>Age (Years)</th>
+                                    <td>{{ applicant.age }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Marital Status</th>
+                                    <td>{{ applicant.family_status }}</td>
+                                    <th>Total Family Members</th>
+                                    <td>{{ applicant.family_members }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Education Level</th>
+                                    <td>{{ applicant.education }}</td>
+                                    <th>Housing Arrangement</th>
+                                    <td>{{ applicant.housing_type }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Owns Vehicle?</th>
+                                    <td>{{ applicant.owns_car }}</td>
+                                    <th>Owns Real Estate?</th>
+                                    <td>{{ applicant.owns_property }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Annual Income</th>
+                                    <td>${{ "{:,.2f}".format(applicant.annual_income) }}</td>
+                                    <th>Employment Length (Years)</th>
+                                    <td>{{ applicant.years_employed }}</td>
+                                </tr>
+                                <tr>
+                                    <th>FICO Credit Score</th>
+                                    <td>{{ applicant.credit_score }}</td>
+                                    <th>Debt-to-Income (DTI)</th>
+                                    <td>{{ "{:.1%}".format(applicant.debt_to_income) }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Active Loan Count</th>
+                                    <td>{{ applicant.existing_loans }}</td>
+                                    <th>Work Phone Provided?</th>
+                                    <td>{% if applicant.work_phone == 1 %}Yes{% else %}No{% endif %}</td>
+                                </tr>
+                                <tr>
+                                    <th>Contact Email Registered?</th>
+                                    <td>{% if applicant.email == 1 %}Yes{% else %}No{% endif %}</td>
+                                    <th>Income Source Type</th>
+                                    <td>{{ applicant.income_type }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- 3. Footer Section -->
+    <footer>
+        <div class="container text-center">
+            <p class="footer-logo mb-2"><i class="fa-solid fa-shield-halved me-2"></i><span>Apex</span>Trust Portal</p>
+            <p class="mb-0 text-muted">© 2026 ApexTrust Corp. Standardized ML Risk Auditing. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

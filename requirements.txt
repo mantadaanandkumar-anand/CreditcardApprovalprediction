@@ -1,0 +1,35 @@
+# ==============================================================================
+# Credit Card Approval Prediction System - Dependencies
+# Target Environment: Python 3.11 / 3.13 compatible stable versions
+# ==============================================================================
+
+# NumPy: Core numerical computing library. Used for array operations, mathematical 
+# transformations (e.g., sigmoid), and handling numerical matrices for predictions.
+numpy==1.26.4
+
+# Pandas: Data manipulation and analysis library. Used to load, clean, impute,
+# and engineer features on credit application datasets using DataFrames.
+pandas==2.2.2
+
+# Scikit-learn: Machine learning library. Used to build, train, cross-validate, and
+# evaluate ML pipelines (Logistic Regression, Random Forest, Decision Tree models).
+scikit-learn==1.5.0
+
+# Matplotlib: Core scientific plotting and data representation tool. Used for drawing 
+# univariate distributions and saving plot figures to disk.
+matplotlib==3.9.0
+
+# Seaborn: Statistical visualization library built on top of Matplotlib. Used to draw 
+# refined bivariate data plots and correlation heatmaps.
+seaborn==0.13.2
+
+# Flask: Lightweight WSGI web application framework. Used to define HTTP web routes, 
+# accept web form requests, and serve interactive pages.
+flask==3.0.3
+
+# Joblib: Serialization and persistence library. Used to save/load trained ML pipelines
+# and metadata objects for quick deployment and inference.
+joblib==1.4.2
+
+# Gunicorn: production WSGI HTTP server for Unix-based cloud deployments
+gunicorn==22.0.0
