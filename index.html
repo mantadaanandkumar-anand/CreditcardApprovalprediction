@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ApexTrust | Credit Approval Portal</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts (Outfit & Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom style sheet -->
+    <link rel="stylesheet" href="static/css/style.css">
+    
+    <style>
+        /* Smooth transitions for the containers */
+        .fade-transition {
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .fade-out {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .d-none {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fa-solid fa-shield-halved me-2"></i><span>Apex</span>Trust
+            </a>
+            <div class="d-flex align-items-center">
+                <span id="secure-badge" class="badge bg-dark border border-secondary text-secondary py-2 px-3">
+                    <i class="fa-solid fa-lock me-2 text-info"></i>Secure Portal
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 2. Hero Section -->
+    <header class="container hero-section text-center py-5">
+        <h1 class="hero-title display-4 fw-bold">Automated Credit Approval System</h1>
+        <p class="hero-subtitle text-secondary fs-5 max-width-600 mx-auto">Fill in the applicant profiles below. Our secure risk scoring algorithm will evaluate the criteria to determine application approval outcomes instantaneously.</p>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="container">
+        
+        <!-- FORM CONTAINER (Visible by default) -->
+        <div id="form-container" class="row justify-content-center fade-transition">
+            <div class="col-lg-10">
+                <form id="prediction-form" class="form-card needs-validation" novalidate>
+                    
+                    <!-- Section A: Personal Profile -->
+                    <h3 class="form-section-title"><i class="fa-regular fa-user me-2"></i>Personal Information</h3>
+                    <div class="row mb-4">
+                        <div class="col-md-4 mb-3">
+                            <label for="gender" class="form-label">Biological Gender</label>
+                            <select class="form-select" id="gender" name="gender" required>
+                                <option value="" disabled selected>Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="age" class="form-label">Age (Years)</label>
+                            <input type="number" class="form-control" id="age" name="age" min="18" max="100" placeholder="e.g. 35" required>
+                            <div class="form-text">Minimum age requirement is 18.</div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="family_status" class="form-label">Marital Status</label>
+                            <select class="form-select" id="family_status" name="family_status" required>
+                                <option value="" disabled selected>Select Status</option>
+                                <option value="Married">Married</option>
+                                <option value="Single">Single</option>
+                                <option value="Civil marriage">Civil Marriage</option>
+                                <option value="Separated">Separated</option>
+                                <option value="Widow">Widow</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="children_count" class="form-label">Number of Children</label>
+                            <input type="number" class="form-control" id="children_count" name="children_count" min="0" max="20" placeholder="e.g. 0" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="family_members" class="form-label">Total Family Members</label>
+                            <input type="number" class="form-control" id="family_members" name="family_members" min="1" max="25" placeholder="e.g. 2" required>
+                            <div class="form-text">Should include applicant.</div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="education" class="form-label">Education Level</label>
+                            <select class="form-select" id="education" name="education" required>
+                                <option value="" disabled selected>Select Education</option>
+                                <option value="Secondary">Secondary / High School</option>
+                                <option value="Higher education">Higher Education / Degree</option>
+                                <option value="Incomplete higher">Incomplete Higher</option>
+                                <option value="Lower secondary">Lower Secondary</option>
+                                <option value="Academic degree">Academic Degree</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Section B: Assets & Employment -->
+                    <h3 class="form-section-title"><i class="fa-solid fa-briefcase me-2"></i>Employment & Assets</h3>
+                    <div class="row mb-4">
+                        <div class="col-md-4 mb-3">
+                            <label for="owns_car" class="form-label">Owns Vehicle?</label>
+                            <select class="form-select" id="owns_car" name="owns_car" required>
+                                <option value="" disabled selected>Select Option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="owns_property" class="form-label">Owns Real Estate Property?</label>
+                            <select class="form-select" id="owns_property" name="owns_property" required>
+                                <option value="" disabled selected>Select Option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="annual_income" class="form-label">Annual Income (USD)</label>
+                            <input type="number" class="form-control" id="annual_income" name="annual_income" min="5000" placeholder="e.g. 55000" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="income_type" class="form-label">Income Type</label>
+                            <select class="form-select" id="income_type" name="income_type" required>
+                                <option value="" disabled selected>Select Source</option>
+                                <option value="Working">Working</option>
+                                <option value="Commercial associate">Commercial Associate</option>
+                                <option value="Pensioner">Pensioner</option>
+                                <option value="State servant">State Servant</option>
+                                <option value="Student">Student</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="years_employed" class="form-label">Years of Employment</label>
+                            <input type="number" step="0.1" class="form-control" id="years_employed" name="years_employed" min="0" max="60" placeholder="e.g. 5.5" required>
+                            <div class="form-text">Enter 0 if unemployed.</div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="housing_type" class="form-label">Housing Type</label>
+                            <select class="form-select" id="housing_type" name="housing_type" required>
+                                <option value="" disabled selected>Select Housing</option>
+                                <option value="House / apartment">House / Apartment</option>
+                                <option value="With parents">With Parents</option>
+                                <option value="Municipal apartment">Municipal Apartment</option>
+                                <option value="Rented apartment">Rented Apartment</option>
+                                <option value="Office apartment">Office Apartment</option>
+                                <option value="Co-op apartment">Co-op Apartment</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Section C: Credit & Risk History -->
+                    <h3 class="form-section-title"><i class="fa-solid fa-chart-line me-2"></i>Financial & Credit History</h3>
+                    <div class="row mb-4">
+                        <div class="col-md-4 mb-3">
+                            <label for="credit_score" class="form-label">FICO Credit Score</label>
+                            <input type="number" class="form-control" id="credit_score" name="credit_score" min="300" max="850" placeholder="e.g. 710" required>
+                            <div class="form-text">Range is standard 300 to 850.</div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="existing_loans" class="form-label">Number of Active Loans</label>
+                            <input type="number" class="form-control" id="existing_loans" name="existing_loans" min="0" max="30" placeholder="e.g. 2" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="debt_to_income" class="form-label">Debt-to-Income (DTI) Ratio</label>
+                            <input type="number" step="0.001" class="form-control" id="debt_to_income" name="debt_to_income" min="0.0" max="1.0" placeholder="e.g. 0.35" required>
+                            <div class="form-text">Represented as decimal (0.0 to 1.0).</div>
+                        </div>
+                    </div>
+
+                    <!-- Section D: Contact Configurations -->
+                    <h3 class="form-section-title"><i class="fa-solid fa-paper-plane me-2"></i>Verification Info</h3>
+                    <div class="row mb-5">
+                        <div class="col-md-6 mb-3 d-flex align-items-center">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="work_phone" name="work_phone" value="1">
+                                <label class="form-check-label ms-3" for="work_phone">
+                                    <strong>Work Phone Provided?</strong>
+                                    <div class="form-text text-secondary">Toggle active if applicant has work phone registry.</div>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3 d-flex align-items-center">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="email" name="email" value="1">
+                                <label class="form-check-label ms-3" for="email">
+                                    <strong>Registered Contact Email?</strong>
+                                    <div class="form-text text-secondary">Toggle active if applicant has contact email registry.</div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Buttons Group -->
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-between">
+                            <button type="reset" class="btn btn-reset px-4"><i class="fa-solid fa-rotate-right me-2"></i>Reset Entries</button>
+                            <button type="submit" class="btn btn-predict px-5"><i class="fa-solid fa-circle-check me-2"></i>Submit Application</button>
+                        </div>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+
+        <!-- RESULTS CONTAINER (Hidden by default) -->
+        <div id="result-container" class="row justify-content-center d-none fade-transition">
+            <div class="col-lg-9">
+                
+                <!-- Main Result Card -->
+                <div id="result-card-element" class="result-card text-center">
+                    
+                    <h2 class="mb-4 text-secondary text-uppercase tracking-wider font-monospace" style="font-size: 0.85rem; letter-spacing: 2px;">Evaluation Outcome</h2>
+                    
+                    <!-- Prediction Label -->
+                    <div>
+                        <span id="result-badge" class="result-header-badge text-white">
+                            <!-- Populated dynamically -->
+                        </span>
+                    </div>
+
+                    <!-- Risk Category and Recommendation Block -->
+                    <div class="row my-4 justify-content-center">
+                        <div class="col-md-10">
+                            <div class="p-4 rounded-4" style="background-color: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.03);">
+                                
+                                <!-- Risk Level -->
+                                <p class="mb-3">
+                                    <strong>Risk Profile:</strong>
+                                    <span id="risk-badge-element" class="risk-badge"></span>
+                                </p>
+
+                                <!-- Recommendation Text -->
+                                <p class="mb-0 text-secondary" style="font-size: 0.95rem; line-height: 1.6;">
+                                    <strong>Decision Recommendation:</strong><br>
+                                    <span id="decision-recommendation-text"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Probability Level Progress Indicator -->
+                    <div class="row justify-content-center mt-5 mb-5">
+                        <div class="col-md-8">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-secondary" style="font-size: 0.85rem;">Approval Probability Score</span>
+                                <strong id="probability-text-element"></strong>
+                            </div>
+                            <div class="progress prob-progress">
+                                <div id="progress-bar-element" class="progress-bar prob-progress-bar" 
+                                     role="progressbar" 
+                                     aria-valuemin="0" 
+                                     aria-valuemax="100">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Predict Again Navigation Button -->
+                    <div class="mt-4">
+                        <button id="btn-back-to-form" class="btn-again"><i class="fa-solid fa-angle-left me-2"></i>Evaluate New Applicant</button>
+                    </div>
+                </div>
+
+                <!-- Section: Applicant Audit Summary Log -->
+                <div class="form-card mb-5">
+                    <h3 class="form-section-title text-start"><i class="fa-solid fa-database me-2"></i>Profile Audit Log</h3>
+                    <div class="table-responsive">
+                        <table class="table audit-table table-bordered align-middle">
+                            <tbody>
+                                <tr>
+                                    <th>Biological Gender</th>
+                                    <td id="audit-gender"></td>
+                                    <th>Age (Years)</th>
+                                    <td id="audit-age"></td>
+                                </tr>
+                                <tr>
+                                    <th>Marital Status</th>
+                                    <td id="audit-marital-status"></td>
+                                    <th>Total Family Members</th>
+                                    <td id="audit-family-members"></td>
+                                </tr>
+                                <tr>
+                                    <th>Education Level</th>
+                                    <td id="audit-education"></td>
+                                    <th>Housing Arrangement</th>
+                                    <td id="audit-housing"></td>
+                                </tr>
+                                <tr>
+                                    <th>Owns Vehicle?</th>
+                                    <td id="audit-owns-car"></td>
+                                    <th>Owns Real Estate?</th>
+                                    <td id="audit-owns-property"></td>
+                                </tr>
+                                <tr>
+                                    <th>Annual Income</th>
+                                    <td id="audit-income"></td>
+                                    <th>Employment Length (Years)</th>
+                                    <td id="audit-employment-length"></td>
+                                </tr>
+                                <tr>
+                                    <th>FICO Credit Score</th>
+                                    <td id="audit-credit-score"></td>
+                                    <th>Debt-to-Income (DTI)</th>
+                                    <td id="audit-dti"></td>
+                                </tr>
+                                <tr>
+                                    <th>Active Loan Count</th>
+                                    <td id="audit-active-loans"></td>
+                                    <th>Work Phone Provided?</th>
+                                    <td id="audit-work-phone"></td>
+                                </tr>
+                                <tr>
+                                    <th>Contact Email Registered?</th>
+                                    <td id="audit-email"></td>
+                                    <th>Income Source Type</th>
+                                    <td id="audit-income-type"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- 3. Footer Section -->
+    <footer>
+        <div class="container text-center">
+            <p class="footer-logo mb-2"><i class="fa-solid fa-shield-halved me-2"></i><span>Apex</span>Trust Portal</p>
+            <p class="mb-0 text-muted">© 2026 ApexTrust Corp. Standardized ML Risk Auditing. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Local JS for prediction execution and styling transitions -->
+    <script src="static/js/app.js"></script>
+</body>
+</html>
