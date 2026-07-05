@@ -15,25 +15,25 @@
     
     <style>
         :root {
-            --bg-color: #0b0f19;
-            --card-bg: rgba(20, 27, 45, 0.7);
-            --border-color: rgba(255, 255, 255, 0.08);
-            --accent-primary: #00f0ff;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --accent-primary: #0066cc;
             --accent-secondary: #7000ff;
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
             --gradient-accent: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
             
-            --success-glow: rgba(25, 135, 84, 0.2);
-            --danger-glow: rgba(220, 53, 69, 0.2);
+            --success-glow: rgba(25, 135, 84, 0.1);
+            --danger-glow: rgba(220, 53, 69, 0.1);
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-primary);
             font-family: 'Inter', sans-serif;
-            background-image: radial-gradient(circle at top right, rgba(112, 0, 255, 0.12) 0%, transparent 40%),
-                              radial-gradient(circle at bottom left, rgba(0, 240, 255, 0.08) 0%, transparent 35%);
+            background-image: radial-gradient(circle at top right, rgba(112, 0, 255, 0.05) 0%, transparent 40%),
+                              radial-gradient(circle at bottom left, rgba(0, 102, 204, 0.04) 0%, transparent 35%);
             background-attachment: fixed;
             min-height: 100vh;
         }
@@ -44,7 +44,7 @@
 
         /* Navigation Bar Styling */
         .navbar-custom {
-            background-color: rgba(11, 15, 25, 0.85);
+            background-color: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-color);
             padding: 15px 0;
@@ -71,7 +71,7 @@
             border-radius: 20px;
             padding: 40px;
             backdrop-filter: blur(16px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             margin-top: 50px;
             margin-bottom: 50px;
             position: relative;
@@ -105,10 +105,10 @@
         /* Probability meter bar */
         .prob-progress {
             height: 18px;
-            background-color: rgba(11, 15, 25, 0.6);
+            background-color: rgba(0, 0, 0, 0.05);
             border-radius: 10px;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .prob-progress-bar {
@@ -120,20 +120,39 @@
         .audit-table {
             color: var(--text-primary);
             font-size: 0.9rem;
-            border-color: rgba(255, 255, 255, 0.05);
+            border-color: rgba(0, 0, 0, 0.08);
             margin-top: 30px;
         }
 
         .audit-table th {
-            color: var(--text-secondary);
-            font-weight: 500;
-            background-color: rgba(0, 0, 0, 0.15);
+            color: var(--text-primary);
+            font-weight: 600;
+            background-color: #f1f5f9;
             padding: 12px;
         }
 
         .audit-table td {
-            background-color: rgba(0, 0, 0, 0.08);
+            background-color: #f8fafc;
             padding: 12px;
+        }
+
+        .form-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 50px;
+        }
+
+        .form-section-title {
+            color: var(--accent-primary);
+            font-size: 1.25rem;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            letter-spacing: 0.5px;
         }
 
         /* Risk categories styling */
@@ -170,7 +189,7 @@
 
         /* Footer styling */
         footer {
-            background-color: #05070c;
+            background-color: #ffffff;
             border-top: 1px solid var(--border-color);
             padding: 30px 0;
             color: var(--text-secondary);
