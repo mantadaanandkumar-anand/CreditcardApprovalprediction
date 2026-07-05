@@ -228,3 +228,5 @@ This project is designed to align with IBM SkillsBuild project portfolios by exe
 * **Reproducibility**: All random sampling, split states, and estimators are bound to a strict random seed value of `42` to ensure consistent execution behavior across all runs.
 * **Complete Preprocessing Pipelines**: Categorical variables are correctly one-hot encoded, and numerical scales are standard-scaled. All imputations are executed inside Scikit-learn pipelines to prevent data leakage during train/test splits.
 * **Actionable Business Metrics**: The system outputs standard classification criteria (Accuracy, Precision, Recall, F1, and ROC-AUC) so users can analyze trade-offs between credit risks and approval volume.
+#   C r e d i t c a r d A p p r o v a l p r e d i c t i o n  
+ 
